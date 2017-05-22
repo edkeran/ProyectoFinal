@@ -35,7 +35,9 @@ public class DialogoRegistro extends JDialog implements ActionListener{
     String nombre;
     String clave;
     String foto="Imagenes/persona.png";
-    public DialogoRegistro() {
+    ventanaPrincipal aux;
+    public DialogoRegistro(ventanaPrincipal ayu) {
+        aux=ayu;
         setSize(300,300);
         setLocationRelativeTo(null);
         setLayout(null);
@@ -95,11 +97,16 @@ public class DialogoRegistro extends JDialog implements ActionListener{
                 }
                 if((!pasword.getText().equals(""))&&(!nickName.getText().equals(""))){
                 String total;
+                Jugador pla= new Jugador();
                 etiquetaN.setForeground(Color.black);
                 etiquetaP.setForeground(Color.black);
                 nombre=nickName.getText().toString();
+                pla.setNombre(nombre);
                 clave= pasword.getText().toString();
-                total=nombre+";"+clave+";"+foto+";";
+                pla.setClave(clave);
+                pla.setImagen(foto);
+                total=nombre+";"+clave+";"+foto+";"+"1"+";"+"0"+";"+"0"+";"+"0"+";"+"0";
+                aux.players.add(pla);
             try {
                 Utilidad.Escribir("Fichero/Archivo.txt", true, total);
             } catch (IOException ex) {

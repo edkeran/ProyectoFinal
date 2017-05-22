@@ -1,2 +1,1 @@
-pepito;cacatua;/home/edgar/Imágenes/lombriz.png;
-tyu;7ty8uh7;Imagenes/persona.png;
+Edgar;1234;Imagenes/persona.png;1;0;0;0;0
