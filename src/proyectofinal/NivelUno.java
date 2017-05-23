@@ -26,8 +26,13 @@ public class NivelUno extends JFrame implements MouseListener,ActionListener {
     JButton boton1;
     JButton boton2;
     JButton boton3;
+    JButton guardar;
+    Jugador jugador;
     String cabeza1,cabeza2,cabeza3,cabeza4,cabeza5,cabeza6,cabeza7,cabeza8,cabeza9,cabeza10;
     JButton aux;
+    JLabel cronometro;
+    JLabel labelCron;
+    HiloCronometro hiloC;
     int filas = 5;
     int columnas = 5;
     int contador = 1;
@@ -36,22 +41,36 @@ public class NivelUno extends JFrame implements MouseListener,ActionListener {
     int color=0;
     private Map<String, JButton> mapaBoton;
     List <Jugador> players = new ArrayList <Jugador>();
-    public NivelUno() {
+    public NivelUno(Jugador a) {
+        cronometro = new JLabel("00:00:00");
+        labelCron= new JLabel("CRONOMETRO");
+        labelCron.setForeground(Color.DARK_GRAY);
+        labelCron.setBounds(450, 80, 100, 20);
+        jugador=a;
+        cronometro.setBounds(450, 100, 100, 20);
         setSize(600,600);
         aux= new JButton("....");
         boton1=new JButton("....");
         boton1.setBackground(Color.white);
         boton1.setBounds(180, 80, 220, 20);
+        boton1.addMouseListener(this);
         boton2= new JButton("....");
         boton2.setBackground(Color.white);
         boton2.setBounds(180, 300, 220, 20);
+        boton2.addMouseListener(this);
         boton3= new JButton("....");
+        boton3.setBackground(Color.white);
+        boton3.setBounds(400, 80, 20, 240);
+        boton3.addMouseListener(this);
         aux.setBackground(Color.white);
         aux.addMouseListener(this);
         aux.setBounds(180, 100, 20, 200);
         add(aux);
         add(boton1);
         add(boton2);
+        add(boton3);
+        add(cronometro);
+        add(labelCron);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLayout(null);
         mapaBoton = new HashMap<String, JButton>();
@@ -111,6 +130,8 @@ public class NivelUno extends JFrame implements MouseListener,ActionListener {
             }
             auxY += 40;
         }
+        hiloC= new HiloCronometro(this);
+        hiloC.start();
         setVisible(true);
     }
 
@@ -143,6 +164,38 @@ public class NivelUno extends JFrame implements MouseListener,ActionListener {
 
     @Override
     public void mouseEntered(MouseEvent e){
+        JButton aux=(JButton) e.getSource();
+       if((aux==mapaBoton.get(cabeza1))||(aux==mapaBoton.get(cabeza2))||(aux==mapaBoton.get(cabeza3))||(aux==mapaBoton.get(cabeza4))||(aux==mapaBoton.get(cabeza5)||(aux==mapaBoton.get(cabeza6))||(aux==mapaBoton.get(cabeza7))||(aux==mapaBoton.get(cabeza8))||(aux==mapaBoton.get(cabeza9))||(aux==mapaBoton.get(cabeza10)))){
+           switch(color){
+               case 1:
+                   if (aux.getBackground()!=Color.red){
+                       repintar(color);
+                   }
+                   break;
+               case 2:
+                   if (aux.getBackground()!=Color.BLUE){
+                       repintar(color);
+                   }
+                   break;
+               case 3:
+                   if (aux.getBackground()!=Color.yellow){
+                       repintar(color);
+                   }
+                   break;
+               case 4:
+                   if (aux.getBackground()!=Color.PINK){
+                       repintar(color);
+                   }
+                   break;
+               case 5:
+                   if (aux.getBackground()!=Color.GREEN){
+                       repintar(color);
+                   }
+                   break;
+           }
+           color=0;
+          
+       }
        if (((JButton) e.getSource()).getBackground()== Color.white){
            repintar(color);
            color=0;

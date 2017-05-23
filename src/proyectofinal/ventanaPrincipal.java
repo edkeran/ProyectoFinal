@@ -81,7 +81,7 @@ public class ventanaPrincipal extends JFrame implements ActionListener{
     }
     //Metodo que carga el juego de Acuerdo a el Nivel
     public void cargarJuego(Jugador a){
-        NivelUno partida= new NivelUno();
+        NivelUno partida= new NivelUno(a);
         dispose();
     }
 }

@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -80,6 +81,7 @@ public class DialogoRegistro extends JDialog implements ActionListener{
     } 
     @Override
     public void actionPerformed(ActionEvent e) {
+        boolean validar=true;
         switch (e.getActionCommand()){
             case "FILE":
                 DialogoArchivo archivo1= new DialogoArchivo(this);
@@ -95,7 +97,15 @@ public class DialogoRegistro extends JDialog implements ActionListener{
                 } else{
                     etiquetaN.setForeground(Color.black);
                 }
-                if((!pasword.getText().equals(""))&&(!nickName.getText().equals(""))){
+                for (Jugador primer : aux.players) {
+                    if (primer.getNombre().equals(nickName.getText().toString())){
+                        validar=false;
+                    }
+                }
+                if (validar==false){
+                   JOptionPane.showMessageDialog(this, "El usuario ya existe", "MENSAJE", JOptionPane.ERROR_MESSAGE);
+                }
+                if((!pasword.getText().equals(""))&&(!nickName.getText().equals(""))&&(validar==true)){
                 String total;
                 Jugador pla= new Jugador();
                 etiquetaN.setForeground(Color.black);
