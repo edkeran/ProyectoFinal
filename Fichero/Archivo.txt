@@ -1,1 +1,2 @@
-Edgar;1234;Imagenes/persona.png;1;0;0;0;0
+johans;12345;/home/edgar/Imágenes/Captura de pantalla de 2017-05-26 08-58-30.png;3;175;0;2;38
+Edgar;1234;Imagenes/persona.png;3;300;0;1;3

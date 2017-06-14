@@ -19,7 +19,7 @@ import javax.swing.JTextField;
  */
 public class DialogoIngreso extends JDialog implements ActionListener{
     private JLabel clave;
-    private JTextField cajaClave;
+    private javax.swing.JPasswordField cajaClave;
     private JLabel usuario;
     private JTextField user;
     private JButton aceptar;
@@ -33,7 +33,7 @@ public class DialogoIngreso extends JDialog implements ActionListener{
         clave= new JLabel("INGRESE SU CLAVE*");
         usuario= new JLabel("INGRESE SU USUARIO*");
         aceptar.addActionListener(this);
-        cajaClave= new JTextField();
+        cajaClave= new javax.swing.JPasswordField();
         user= new JTextField();
         usuario.setBounds(0, 5, 200, 20);
         user.setBounds(0, 25, 150, 20);

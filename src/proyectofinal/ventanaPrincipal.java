@@ -61,19 +61,21 @@ public class ventanaPrincipal extends JFrame implements ActionListener{
         try {
             datos=Utilidad.leerFichero("Fichero/Archivo.txt");
             vector=datos.split("\n");
-            for (int i=0;i<vector.length;i++){
-                Jugador cargar= new Jugador();
-                String ayu[];
-                ayu= vector[i].split(";");
-                cargar.setNombre(ayu[0]);
-                cargar.setClave(ayu[1]);
-                cargar.setImagen(ayu[2]);
-                cargar.setNivel(Integer.parseInt(ayu[3]));
-                cargar.setPuntaje(Integer.parseInt(ayu[4]));
-                cargar.setHor(Integer.parseInt(ayu[5]));
-                cargar.setMin(Integer.parseInt(ayu[6]));
-                cargar.setSeg(Integer.parseInt(ayu[7]));
-                players.add(cargar);
+            if (vector[0]!=""){
+                for (int i=0;i<vector.length;i++){
+                        Jugador cargar= new Jugador();
+                        String ayu[];
+                        ayu= vector[i].split(";");
+                        cargar.setNombre(ayu[0]);
+                        cargar.setClave(ayu[1]);
+                        cargar.setImagen(ayu[2]);
+                        cargar.setNivel(Integer.parseInt(ayu[3]));
+                        cargar.setPuntaje(Integer.parseInt(ayu[4]));
+                        cargar.setHor(Integer.parseInt(ayu[5]));
+                        cargar.setMin(Integer.parseInt(ayu[6]));
+                        cargar.setSeg(Integer.parseInt(ayu[7]));
+                        players.add(cargar);
+                    }
             }
         } catch (IOException ex) {
             System.err.println("Ha ocurrido un error inesperado");
@@ -81,7 +83,15 @@ public class ventanaPrincipal extends JFrame implements ActionListener{
     }
     //Metodo que carga el juego de Acuerdo a el Nivel
     public void cargarJuego(Jugador a){
-        NivelUno partida= new NivelUno(a);
+        if (a.getNivel()==1){
+            NivelUno partida= new NivelUno(a,players);
+        }
+        if(a.getNivel()==2){
+            NivelDos partida = new NivelDos(a,players);
+        }
+        if(a.getNivel()==3){
+            NivelTres partida= new NivelTres(a,players);
+        }
         dispose();
     }
 }

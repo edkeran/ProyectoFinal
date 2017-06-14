@@ -30,7 +30,7 @@ public class DialogoRegistro extends JDialog implements ActionListener{
     JLabel etiquetaN;
     JLabel etiquetaP;
     JLabel imagen;
-    JTextField pasword;
+    javax.swing.JPasswordField pasword;
     JButton ventanaFile;
     JButton guardar;
     String nombre;
@@ -55,7 +55,7 @@ public class DialogoRegistro extends JDialog implements ActionListener{
         ImageIcon icon= new ImageIcon("Imagenes/persona.png");
         imagen= new JLabel();
         imagen.setIcon(new ImageIcon(icon.getImage().getScaledInstance(200,150,Image.SCALE_SMOOTH)));
-        pasword= new JTextField();
+        pasword= new javax.swing.JPasswordField();
         etiquetaN.setBounds(0, 5, 170, 20);
         nickName.setBounds(170, 5, 120, 20);
         etiquetaP.setBounds(0, 30, 170, 20);
@@ -113,8 +113,13 @@ public class DialogoRegistro extends JDialog implements ActionListener{
                 nombre=nickName.getText().toString();
                 pla.setNombre(nombre);
                 clave= pasword.getText().toString();
+                pla.setNivel(1);
                 pla.setClave(clave);
                 pla.setImagen(foto);
+                pla.setPuntaje(0);
+                pla.setHor(0);
+                pla.setMin(0);
+                pla.setSeg(0);
                 total=nombre+";"+clave+";"+foto+";"+"1"+";"+"0"+";"+"0"+";"+"0"+";"+"0";
                 aux.players.add(pla);
             try {
